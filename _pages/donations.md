@@ -5,7 +5,7 @@ author_profile: true
 ---
 
 <script>
-location.href = 'https://supportukrainenow.org/';
+location.href = 'https://customfw.xyz/donations';
 </script>
 
 ## Реквизиты для сбора пожертвований:
