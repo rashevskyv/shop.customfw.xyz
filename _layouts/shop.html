@@ -4,16 +4,10 @@ layout: default
 
 <style>
   .carousel-wrapper {
-    width: 60%; /* Ширина контейнера - 60% від ширини батьківського елемента */
-    max-width: 600px;
+    width: 100%; /* Ширина контейнера - 100% від ширини батьківського елемента */
+    max-width: 1000px;
     margin: 0 auto; /* Автоматичні відступи з обох боків для центрування */
     overflow: hidden; /* Приховує елементи, які виходять за межі контейнера */
-  }
-  
-  @media (max-width: 768px) {
-    .carousel-wrapper {
-      width: 100%;
-    }
   }
   
   .carousel__container {
@@ -66,7 +60,7 @@ layout: default
       {% endunless %}
         <div class="carousel-wrapper">
           <div class="carousel__container">
-            {% include carousel.html height="60" unit="%" number="1" %}
+            {% include carousel.html height="36" unit="%" number="1" %}
             <div class="text-overlay">
             {{ page.price }}
             </div>
