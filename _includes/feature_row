@@ -152,7 +152,7 @@
       {% endif %}
       <div class="shop-section">
         <div class="shop-section__header">
-          <h2 id="{{ f.caption | slugify }}">{{ f.caption }}</h2>
+          <h2 id="{{ f.caption | slugify }}">{{ f.caption | replace: 'Wii U', 'Wii&nbsp;U' }}</h2>
         </div>
         <div class="shop-section__items">
         {% assign section_started = true %}
@@ -181,7 +181,7 @@
               <div class="shop-item__price">{{ f.price }}</div>
             </div>
             <div class="shop-item__body">
-              <h3 class="shop-item__title">{{ f.title }}</h3>
+              <h3 class="shop-item__title">{{ f.title | replace: 'Wii U', 'Wii&nbsp;U' }}</h3>
               {% if f.excerpt %}
                 <div class="shop-item__excerpt">{{ f.excerpt | markdownify }}</div>
               {% endif %}
