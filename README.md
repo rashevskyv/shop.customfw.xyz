@@ -38,3 +38,25 @@
 > You can also donate to [charity supporting Ukrainian army](https://savelife.in.ua/en/donate/).
 >
 > **THANK YOU!**
+
+---
+
+# Nintendo Switch Store Site
+
+A Jekyll-based catalog site for modded Nintendo Switch and Wii U consoles, offering modding and repair services.
+
+## Features & Pricing Structure
+
+- **Modded Console Catalog:** Includes Switch OLED, Switch V2, Switch V1, Switch Lite, and Wii U models.
+- **On-Demand Consoles:** New consoles (Switch OLED, Switch V2, Switch Lite) are marked as **under order (під замовлення)** with prices subject to request/confirmation.
+- **Memory Card Policy:** All consoles are sold **without a memory card by default**. Customers can purchase compatible memory cards separately at retail store prices.
+- **Quality Assurance:** Handled and configured with standard Custom Firmware (Kefir/Aroma).
+
+## Version History (Changelog)
+
+### v4.6.1
+- **New Console Lot:** Added a new Switch Lite (New / Nova) listing page.
+- **Catalog Visibility:** Enabled all new Switch consoles (OLED, OLED Limited, V2, Lite) on the home page.
+- **Pricing adjustment:** Reduced the price of all used console models by 500 UAH.
+- **Disclaimer Updates:** Added warnings to all console listing pages regarding memory card requirements (sold separately) and console illustrations (photo examples vs. actual items).
+- **Cleanup & Polish:** Removed the duplicate white Wii U listing, fixed duplicate advantages block on OLED pages, and corrected various Ukrainian spelling and grammar typos.

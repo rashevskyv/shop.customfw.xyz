@@ -4,7 +4,7 @@
 
 <div id="fullscreen-overlay" style="display: none;">
   <span id="fullscreen-prev" class="fullscreen-control">&#10094;</span>
-  <img id="fullscreen-image" src="" alt="Fullscreen Image">
+  <img id="fullscreen-image" src="" alt="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">
   <span id="fullscreen-next" class="fullscreen-control">&#10095;</span>
 </div>
 
@@ -34,7 +34,13 @@
         <div class="carousel__track">
           <ul>
             {% for item in page.carousels[number].images %}
-            <li class="carousel__slide" style="background-image: url('{{ item.image }}');"></li>
+            <li class="carousel__slide" style="background-image: url('{{ item.image }}');">
+              <img class="carousel__slide-image"
+                src="{{ item.image | absolute_url }}"
+                alt="{{ item.alt | default: page.title | markdownify | strip_html | strip_newlines | escape_once }}"
+                loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                decoding="async">
+            </li>
             {% endfor %}
           </ul>
         </div>
@@ -234,6 +240,16 @@
 .carousel__slide {
   cursor: pointer;
   /* Інші стилі залишаються без змін */
+}
+
+.carousel__slide-image {
+  height: 1px;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 1px;
 }
 
 #fullscreen-image {

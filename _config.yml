@@ -15,12 +15,12 @@ defaults:
       author_profile: true
       
 # Site Settings
-title                    : "nincfw"
-locale                   : "ru-RU"
+title                    : "Магазин Nintendo Switch"
+locale                   : "uk-UA"
 title_separator          : "-"
 name                     : "xHR"
-description              : "Магазин nincfw"
-url                      : "http://shop.customfw.xyz/" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+description              : "Продаж прошитих Nintendo Switch, чипування та ремонт консолей в Україні. Консультації, гарантія та підтримка після покупки."
+url                      : "https://shop.customfw.xyz" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "rashevskyv/shop" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
@@ -68,13 +68,21 @@ facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 : # Open Graph/Twitter default site image
+og_image                 : "/images/home-page-feature.jpg" # Open Graph/Twitter default site image
+logo                     : "/images/bio-photo.png"
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
-  type                   : # Person or Organization (defaults to Person)
-  name                   : # If the user or organization name differs from the site's name
+  type                   : LocalBusiness # Person or Organization (defaults to Person)
+  name                   : "nincfw"
   links: # An array of links to social media profiles
+    - "https://github.com/rashevskyv"
+    - "https://t.me/xhrxhrxhr"
+    - "https://www.instagram.com/rashevsky.v"
+
+schema:
+  type                   : LocalBusiness
+  name                   : "nincfw"
 
 # Analytics
 analytics:
