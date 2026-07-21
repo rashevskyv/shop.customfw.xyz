@@ -3,94 +3,196 @@
 {% else %}
   {% assign feature_row = page.feature_row %}
 {% endif %}
-{% if include.id %}
-  {% assign feature_row2 = page[include.id] %}
-{% else %}
-  {% assign feature_row2 = page.feature_row %}
-{% endif %}
 
 <style>
-  .archive__item-teaser {
-    position: relative;
+.shop-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.shop-section {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 2.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding-bottom: 3rem;
+}
+
+.shop-section:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.shop-section__header {
+  padding-top: 0.25rem;
+}
+
+.shop-section__header h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.shop-section__items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 450px), 1fr));
+  gap: 2rem;
+}
+
+.shop-item a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.shop-item__card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #fff;
+  border: 1px solid #e1e8ed;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.shop-item__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.shop-item__teaser {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  overflow: hidden;
+  background-color: #f5f8fa;
+}
+
+.shop-item__teaser img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.shop-item__price {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  background: rgba(44, 62, 80, 0.95);
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 6px 18px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.15);
+}
+
+.shop-item__body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.shop-item__title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 0.75rem 0;
+  line-height: 1.3;
+}
+
+.shop-item__excerpt {
+  font-size: 1.05rem;
+  color: #5f7285;
+  margin: 0;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.shop-item__excerpt p {
+  margin: 0;
+}
+
+/* On mobile/tablet, stack them vertically */
+@media (max-width: 768px) {
+  .shop-section {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding-bottom: 2.5rem;
   }
-  .archive__item-wrapper img {
-    width: 100%;
-    height: auto;
+  
+  .shop-section__header h2 {
+    font-size: 1.5rem;
+    border-bottom: 2px solid #2c3e50;
+    padding-bottom: 0.25rem;
+    display: inline-block;
   }
+}
+</style>
 
-  .text-overlay {
-    position: absolute;
-    bottom: 20px;
-    left: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    font-size: 1em;
-    padding: 10px 20px;
-    margin-bottom: -20px;
-    box-sizing: border-box;
-  }
-
-
-  .feature__item > a {
-    color: #494e52 !important;
-  }
-
-  </style>
-
-<div class="feature__wrapper">
-
+<div class="shop-container">
+  {% assign section_started = false %}
   {% for f in feature_row %}
-
-    {% if f.caption %}
-      <div class="feature__item feature__caption">
-      <span id="{{ f.caption | slugify }}">{{ f.caption }}</span>
-      </div>
-      {% continue %}
-    {% endif %}
-
-    {% if f.url contains "://" %}
-      {% capture f_url %}{{ f.url }}{% endcapture %}
-    {% else %}
-      {% capture f_url %}{{ f.url | absolute_url }}{% endcapture %}
-    {% endif %}
-
-    <div class="feature__item{% if include.type %}--{{ include.type }}{% endif %}">
-      <a href="{{ f_url }}">
-
-        <div class="archive__item">
-          <div class="archive__item-teaser">
-            <div class="archive__image-wrapper">
-              <img src=
-              {% if f.image_path contains "://" %}
-              "{{ f.image_path }}"
-              {% else %}
-              "{{ f.image_path | absolute_url }}"
-              {% endif %}
-              alt="{{ f.alt | default: f.title | default: f.excerpt | markdownify | strip_html | strip_newlines | escape_once }}"
-              loading="lazy"
-              decoding="async"
-              >
-              <div class="text-overlay">
-               {{ f.price }}
-              </div>
-            </div>
-            
-          </div>  
-
-          <div class="archive__item-body">
-            <h2 class="archive__item-title">{{ f.title }}</h2>
-
-            {% if f.excerpt %}
-            <div class="archive__item-excerpt">
-              {{ f.excerpt | markdownify }}
-            </div>
-            {% endif %}
-          </div>
+    {% if f.caption and f.caption != "" %}
+      {% if section_started %}
+        </div> <!-- close shop-section__items -->
+        </div> <!-- close shop-section -->
+      {% endif %}
+      <div class="shop-section">
+        <div class="shop-section__header">
+          <h2 id="{{ f.caption | slugify }}">{{ f.caption }}</h2>
         </div>
-
-      </a>
-    </div>
+        <div class="shop-section__items">
+        {% assign section_started = true %}
+    {% elsif f.caption == nil %}
+      {% if section_started == false %}
+        <div class="shop-section">
+          <div class="shop-section__header"></div>
+          <div class="shop-section__items">
+          {% assign section_started = true %}
+      {% endif %}
+      
+      {% if f.url contains "://" %}
+        {% assign f_url = f.url %}
+      {% else %}
+        {% assign f_url = f.url | absolute_url %}
+      {% endif %}
+      
+      <div class="shop-item">
+        <a href="{{ f_url }}">
+          <div class="shop-item__card">
+            <div class="shop-item__teaser">
+              <img src="{% if f.image_path contains '://' %}{{ f.image_path }}{% else %}{{ f.image_path | absolute_url }}{% endif %}" 
+                   alt="{{ f.alt | default: f.title | default: f.excerpt | markdownify | strip_html | strip_newlines | escape_once }}"
+                   loading="lazy"
+                   decoding="async">
+              <div class="shop-item__price">{{ f.price }}</div>
+            </div>
+            <div class="shop-item__body">
+              <h3 class="shop-item__title">{{ f.title }}</h3>
+              {% if f.excerpt %}
+                <div class="shop-item__excerpt">{{ f.excerpt | markdownify }}</div>
+              {% endif %}
+            </div>
+          </div>
+        </a>
+      </div>
+    {% endif %}
   {% endfor %}
-
+  {% if section_started %}
+    </div> <!-- close shop-section__items -->
+    </div> <!-- close shop-section -->
+  {% endif %}
 </div>

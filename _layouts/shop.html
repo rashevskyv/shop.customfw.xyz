@@ -4,9 +4,16 @@ layout: default
 
 <style>
   .carousel-wrapper {
-    width: 100%; /* Ширина контейнера - 60% від ширини батьківського елемента */
+    width: 60%; /* Ширина контейнера - 60% від ширини батьківського елемента */
+    max-width: 600px;
     margin: 0 auto; /* Автоматичні відступи з обох боків для центрування */
     overflow: hidden; /* Приховує елементи, які виходять за межі контейнера */
+  }
+  
+  @media (max-width: 768px) {
+    .carousel-wrapper {
+      width: 100%;
+    }
   }
   
   .carousel__container {
