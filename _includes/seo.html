@@ -208,6 +208,7 @@
   "offers": {
     "@type": "{{ offer_schema_type }}",
     "priceCurrency": "UAH",
+    "priceValidUntil": "{{ site.time | date: '%Y' | plus: 1 }}-12-31",
     {% if offer_schema_type == "AggregateOffer" %}
     "lowPrice": {{ low_price | jsonify }},
     "highPrice": {{ high_price | jsonify }},
